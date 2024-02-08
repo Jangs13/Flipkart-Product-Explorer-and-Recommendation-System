@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Visualization</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            background-color: #E0E0E0;
+            text-align: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .header {
+            overflow: hidden;
+            text-align: center;
+            background-color: #8fd9ed;
+            padding: 20px;
+            border-radius: 10px 10px 0 0;
+        }
+
+        h2 {
+            margin: 0;
+            color: #1A1A1A;
+        }
+
+        .button-27,
+        .btn-submit,
+        .btn-back {
+            appearance: none;
+            background-color: #E0E0E0;
+            border: 2px solid #74b2f0;
+            box-sizing: border-box;
+            color: #000;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: normal;
+            outline: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            will-change: transform;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .button-27:hover,
+        .btn-submit:hover,
+        .btn-back:hover {
+            box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+            transform: translateY(-2px);
+        }
+
+        .button-27:active,
+        .btn-submit:active,
+        .btn-back:active {
+            box-shadow: none;
+            transform: translateY(0);
+        }
+
+        select {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: 2px solid #74b2f0;
+        }
+
+        #plot {
+            margin-top: 20px;
+        }
+
+        .search-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h2>Trends You Might Like</h2>
+    </div>
+    <div class="search-container">
+        <form method="POST" action="/plot">
+            <label for="dropdown">Select an option:</label>
+            <select id="dropdown" name="dropdown">
+                <option value="popular">Top 5 popular products</option>
+                <option value="expensive">Top 5 expensive products</option>
+                <option value="cheap">Top 5 cheap products</option>
+                <option value="most_discounted">Top 5 Most Discounted Products</option>
+                <option value="brand_rating">Top 5 Brands</option>
+            </select>
+            <input type="submit" class="button-27" value="Submit">
+            <a href="{{ url_for('view') }}" class="btn-back">Back to View Home</a>
+        </form>
+    </div>
+    <div id="plot">
+        {% if plot_div %}
+            {{ plot_div|safe }}
+        {% endif %}
+    </div>
+</body>
+
+</html>
+

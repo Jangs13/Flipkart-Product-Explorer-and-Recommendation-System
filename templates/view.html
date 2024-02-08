@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin View Product Information</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            background-color: #F5F5F5;
+            text-align: center;
+            color: #333333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-align: center;
+            background-color: #8fd9ed;
+            padding: 20px;
+        }
+
+        .header h2 {
+            margin: 0;
+            font-size: 28px;
+            color: #FFFFFF;
+        }
+
+        .search-form {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            margin-top: 20px;
+        }
+
+        select, input, button, .home-button {
+            padding: 10px;
+            border: 2px solid #8fd9ed;
+            border-radius: 5px;
+            background-color: #FFFFFF;
+            color: #333333;
+            outline: none;
+            margin-right: 10px;
+        }
+
+        select {
+            width: 150px;
+        }
+
+        .button-search, .home-button {
+            background-color: #8fd9ed;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .button-search:hover, .home-button:hover {
+            background-color: #8fd9ed;
+        }
+
+        .icon {
+            margin-right: 10px;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-container input {
+            width: calc(100% - 45px);
+        }
+
+        .search-container button {
+            background-color: #8fd9ed;
+            border: 2px solid #FFFFFF;
+            color: #FFFFFF;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 0 5px 5px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-container button:hover {
+            background-color: #8fd9ed;
+        }
+
+        table {
+            overflow: hidden;
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            border: 2px solid #FFFFFF;
+            background-color: #E0E0E0;
+        }
+
+        td {
+            overflow: hidden;
+            white-space: normal;
+            word-break: normal;
+            padding: 10px;
+            color: #333333;
+            text-align: left;
+        }
+
+        .no-data-message {
+            color: #FF6347;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h2>Product Inventory</h2>
+        <form method="post" action="{{ url_for('view') }}" class="search-form">
+            <select name="search_column">
+                <option value="product_name">Product Name</option>
+                <option value="discounted_price">Discounted Price</option>
+                <option value="retail_price">Actual Price</option>
+                <option value="product_rating_score">Rating</option>
+                <option value="category_1">Category</option>
+                <option value="category_2">Sub Category</option>
+            </select>
+            <div class="search-container">
+                <input type="text" name="search_term" placeholder="Search term">
+                <button class="button-search" type="submit">
+                    <span class="icon">🔍</span>
+                </button>
+            </div>
+            <a href="{{ url_for('admin_home') }}" class="home-button">
+              <i class="fas fa-home icon" style="font-size: 24px;"></i>
+          </a>
+        </form>
+    </div>
+
+    <div class="flex-container">
+      <table border="5">
+          <thead>
+              <td>Product ID</td>
+              <td>Product Name</td>
+              <td>Discounted Price</td>
+              <td>Actual Price</td>
+              <td>Discount Percentage</td>
+              <td>Category</td>
+              <td>Sub Category</td>
+              <td>Product Description</td>
+              <td>Edit</td>
+              <td>Delete</td>
+          </thead>
+          {% for row in rows %}
+              <tr>
+                  <td>{{ row["pid"] }}</td>
+                  <td>{{ row["product_name"] }}</td>
+                  <td>{{ row["discounted_price"] }}</td>
+                  <td>{{ row["retail_price"] }}</td>
+                  <td>{{ row["Discount_percentage"] }}</td>
+                  <td>{{ row["category_1"] }}</td>
+                  <td>{{ row["category_2"] }}</td>
+                  <td>{{ row["description"][:30] }}{{ '...' if row["description"]|length > 30 else '' }}</td>
+                  <td>
+                    <form action="{{ url_for('edit_record', product_id=row.pid) }}" method="get">
+                        <button type="submit" class="btn btn-primary">Edit</button>
+                    </form>
+                  </td>
+                  <td>
+                    <form action="{{ url_for('delete_row', product_id=row['pid']) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this record?')">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                  </td>
+              </tr>
+          {% endfor %}
+      </table>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
+

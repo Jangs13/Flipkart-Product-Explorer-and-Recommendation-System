@@ -1,0 +1,261 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up</title>
+    <style>
+        body { 
+  margin: 0;
+  background-color:  #464242;
+  text-align: center;
+}
+
+.header {
+  overflow: hidden;
+  text-align: center;
+  background-color:  #FF7F5C;
+  padding: 10px 10px;
+}
+
+a {
+  color: rgb(255, 255, 255);
+}
+
+label {
+  color: rgb(255, 255, 255);
+}
+
+.btn-signup {
+  appearance: none;
+  background-color: #000000;
+  border: 2px solid #1A1A1A;
+  
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0 auto;
+  min-height: 40px;
+  min-width: 0;
+  outline: none;
+  padding: 5px 5px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 10%;
+  will-change: transform;
+}
+    </style>
+</head>
+<body>
+    <div class ="header">
+        <h1>Sign Up</h1>
+    </div>
+    <br><br>
+    <form method="POST" action="{{ url_for('signup') }}">
+        <label for="username">Username:</label>
+        <input type="text" name="username" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" name="password" pattern=".{8,}" title="Password must be at least 8 characters long and contain at least one lowercase alphabet, one uppercase alphabet, one numeric, and one special character" required><br><br>
+        <label for="confirm_password">Confirm Password:</label>
+        <input type="password" name="confirm_password" required><br><br>
+        {% if error %}
+        <p style="color: red;">{{ error }}</p>
+        {% endif %}
+        <input type="submit" class="btn-signup" value="Sign Up">
+    </form>
+    <br>
+    <a href="{{ url_for('login') }}">Already have an account? Log in here.</a>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #E0E0E0;
+        }
+
+        .container {
+            width: 60%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border: 2px solid #8fd9ed;
+            background-color: #FFF;
+            padding: 20px;
+        }
+
+        .signup-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #FFFFFF;
+        }
+
+        .signup-section {
+            border-right: 2px dashed #8fd9ed;
+            padding-right: 20px;
+        }
+
+        form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 15px;
+            color: #8fd9ed;
+        }
+
+        input {
+            width: calc(100% - 30px);
+            padding: 15px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border: 2px solid #8fd9ed;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #000;
+            outline: none;
+            caret-color: #8fd9ed;
+        }
+
+        .btn-signup {
+            width: calc(100% - 30px);
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #8fd9ed;
+            color: #FFFFFF;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-signup:hover {
+            background-color: #6fa4c7;
+        }
+
+        .error-message {
+            color: #FF6347;
+            margin-top: 15px;
+        }
+
+        a {
+            color: #8fd9ed;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .welcome-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #FFFFFF;
+            margin-top: 20px;
+        }
+
+        .wheader {
+            overflow: hidden;
+            text-align: center;
+            padding: 20px 10px; /* Adjusted padding */
+            width: 100%;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .header {
+            overflow: hidden;
+            text-align: center;
+            background-color: #8fd9ed;
+            padding: 5px 5px;
+            width: 100%;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+
+        h2 {
+            margin: 0;
+            color: #8fd9ed;
+            font-size: 24px; /* Increased font size */
+        }
+
+        p {
+            text-align: center;
+            color: #8fd9ed;
+            margin-top: 10px; /* Adjusted margin for better spacing */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="signup-section">
+            <div class="header">
+                <h1>SmartShop</h1>
+            </div>
+            <br><br>
+            {% if error %}
+                <p class="error-message">{{ error }}</p>
+            {% endif %}
+            <form method="POST" action="{{ url_for('signup') }}">
+                <label for="username">Username:</label>
+                <input type="text" name="username" required>
+                <label for="password">Password:</label>
+                <input type="password" name="password" required>
+                <label for="confirm_password">Confirm Password:</label>
+                <input type="password" name="confirm_password" required>
+                <input type="submit" class="btn-signup" value="Sign Up">
+            </form>
+            <br>
+            <a href="{{ url_for('login') }}">Already have an account? Log in here.</a>
+        </div>
+        <div class="welcome-section">
+            <div class="wheader">
+                <h2>Welcome to SmartShop</h2>
+            </div>
+            <p>Discover a world of convenience and quality shopping with SmartShop.</p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

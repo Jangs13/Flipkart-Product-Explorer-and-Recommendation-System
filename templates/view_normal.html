@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Catalog</title>
+    <!-- Include Font Awesome CSS (Add this line to include the library) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            background-color: #F5F5F5;
+            text-align: center;
+            color: #333333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-align: center;
+            background-color: #3498db; /* Updated header color */
+            padding: 20px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); /* Added box shadow */
+        }
+
+        .header h2 {
+            margin: 0;
+            font-size: 28px;
+            color: #FFFFFF;
+            letter-spacing: 2px; /* Added letter spacing */
+        }
+
+        .button-container {
+            display: flex;
+            align-items: center;
+        }
+
+        select, input, button, .trends-button, .logout-button {
+            padding: 10px;
+            border: 2px solid #3498db; /* Updated border color */
+            border-radius: 5px;
+            background-color: #FFFFFF;
+            color: #333333;
+            outline: none;
+            margin-right: 10px; /* Added margin-right */
+        }
+
+        select {
+            width: 150px;
+        }
+
+        .button-search, .trends-button, .logout-button {
+            background-color: #3498db;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            color: #FFFFFF;
+        }
+
+        .button-search:hover, .trends-button:hover, .logout-button:hover {
+            background-color: #2980b9; /* Darker color on hover */
+        }
+
+        .icon {
+            margin-right: 10px;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-container input {
+            width: calc(100% - 45px);
+        }
+
+        .search-container button {
+            background-color: #3498db;
+            border: 2px solid #FFFFFF;
+            color: #FFFFFF;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 0 5px 5px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-container button:hover {
+            background-color: #2980b9; /* Darker color on hover */
+        }
+
+        table {
+            overflow: hidden;
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            border: 2px solid #FFFFFF;
+            background-color: #E0E0E0;
+        }
+
+        td {
+            overflow: hidden;
+            white-space: normal;
+            word-break: normal;
+            padding: 10px;
+            color: #333333;
+            text-align: left;
+        }
+
+        .no-data-message {
+            color: #FF6347;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Flash messages block -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flash">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <div class="header">
+        <h2>Product Catalog</h2>
+        <div class="button-container">
+            <a href="/plot" class="trends-button">
+                <i class="fas fa-chart-line icon" style="font-size: 24px;"></i>
+                Trends
+            </a>
+            <form method="post" action="{{ url_for('view') }}" class="search-container">
+                <select name="search_column">
+                    <option value="product_name">Product Name</option>
+                    <option value="discounted_price">Discounted Price</option>
+                    <option value="retail_price">Actual Price</option>
+                    <option value="product_rating_score">Rating</option>
+                    <option value="category_1">Category</option>
+                    <option value="category_2">Sub Category</option>
+                </select>
+                <input type="text" name="search_term" placeholder="Search product">
+                <button class="button-search" type="submit">
+                    <span class="icon">🔍</span>
+                </button>
+            </form>
+            <a href="{{ url_for('login') }}" class="logout-button">
+                <i class="fas fa-sign-out-alt icon" style="font-size: 24px;"></i>
+                Logout
+            </a>
+        </div>
+    </div>
+
+    <div class="flex-container">
+        {% if not rows %}
+            <p class="no-data-message">No data found.</p>
+            <table border="5">
+                <thead>
+                    <td>Product Name</td>
+                    <td>Discounted Price</td>
+                    <td>Actual Price</td>
+                    <td>Discount Percentage</td>
+                    <td>Category</td>
+                    <td>Sub Category</td>
+                    <td>Product Rating</td>
+                    <td>Product Description</td>
+                </thead>
+                {% for row in all_rows %}
+                    <tr>
+                        <td>{{ row["product_name"] }}</td>
+                        <td>{{ row["discounted_price"] }}</td>
+                        <td>{{ row["retail_price"] }}</td>
+                        <td>{{ row["Discount_percentage"] }}</td>
+                        <td>{{ row["category_1"] }}</td>
+                        <td>{{ row["category_2"] }}</td>
+                        <td>{{ row["product_rating_score"] }}</td>
+                        <td>{{ row["description"] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <table border="5">
+                <thead>
+                    <td>Product Name</td>
+                    <td>Discounted Price</td>
+                    <td>Actual Price</td>
+                    <td>Discount Percentage</td>
+                    <td>Category</td>
+                    <td>Sub Category</td>
+                    <td>Product Rating</td>
+                    <td>Product Description</td>
+                </thead>
+                {% for row in rows %}
+                    <tr>
+                        <td>{{ row["product_name"] }}</td>
+                        <td>{{ row["discounted_price"] }}</td>
+                        <td>{{ row["retail_price"] }}</td>
+                        <td>{{ row["Discount_percentage"] }}</td>
+                        <td>{{ row["category_1"] }}</td>
+                        <td>{{ row["category_2"] }}</td>
+                        <td>{{ row["product_rating_score"] }}</td>
+                        <td>{{ row["description"] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    </div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

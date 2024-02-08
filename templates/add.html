@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #E0E0E0;
+            text-align: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 60%;
+            background-color: #FFFFFF;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        .header {
+            background-color: #8fd9ed;
+            padding: 20px;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            margin: 0;
+            color: #1A1A1A;
+        }
+
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .tb_text {
+            padding: 10px;
+            background-color: #8fd9ed;
+            color: #000;
+        }
+
+        input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 2px solid #8fd9ed;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .btn-sub-add,
+        .btn-back {
+            appearance: none;
+            background-color: #000000;
+            border: 2px solid #1A1A1A;
+            box-sizing: border-box;
+            color: #FFFFFF;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: normal;
+            outline: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            will-change: transform;
+            border-radius: 5px;
+            margin-right: 10px; /* Added margin between buttons */
+        }
+
+        .btn-sub-add:hover,
+        .btn-back:hover {
+            box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+            transform: translateY(-2px);
+        }
+
+        .btn-sub-add:active,
+        .btn-back:active {
+            box-shadow: none;
+            transform: translateY(0);
+        }
+
+        /* Center the Submit button */
+        .submit-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Add Inventory</h2>
+        </div>
+        <form action="/addrecords" method="post">
+            <table>
+                <tr>
+                    <td class="tb_text">Product ID</td>
+                    <td><input type="text" name="product_id"></td>
+                </tr>
+                <tr>
+                    <td class="tb_text">Product Name</td>
+                    <td><input type="text" name="product_name"></td>
+                </tr>
+                <tr>
+                    <td class="tb_text">Category</td>
+                    <td><input type="text" name="category"></td>
+                </tr>
+                <tr>
+                    <td class="tb_text">Subcategory</td>
+                    <td><input type="text" name="subcategory"></td>
+                </tr>
+                <tr>
+                    <td class="tb_text">About Product</td>
+                    <td><input type="text" name="about_product"></td>
+                </tr>
+                <tr>
+                    <td class="tb_text">Retail Price</td>
+                    <td><input type="text" name="retail_price"></td>
+                </tr>
+                <tr>
+                    <td class="tb_text">Discount Price</td>
+                    <td><input type="text" name="discount_price"></td>
+                </tr>
+            </table>
+            <div class="submit-container">
+                <a href="{{ url_for('admin_home') }}" class="btn-back">Admin Home</a>
+                <button type="submit" class="btn-sub-add">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
+
+
+
+
+
+
+                   
+
+

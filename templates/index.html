@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Home</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #E0E0E0;
+            text-align: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 40%;
+            background-color: #FFFFFF;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            margin: 20px auto;
+        }
+
+        .header {
+            overflow: hidden;
+            text-align: center;
+            background-color: #8fd9ed;
+            padding: 10px 10px;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            margin: 0;
+            color: #1A1A1A;
+        }
+
+        .button-27 {
+            width: 100%;
+            appearance: none;
+            background-color: #E0E0E0;
+            border: 2px solid #74b2f0;
+            box-sizing: border-box;
+            color: #000;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: normal;
+            outline: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            will-change: transform;
+            border-radius: 5px;
+        }
+
+        .button-27:disabled {
+            pointer-events: none;
+        }
+
+        .button-27:hover {
+            box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+            transform: translateY(-2px);
+        }
+
+        .button-27:active {
+            box-shadow: none;
+            transform: translateY(0);
+        }
+
+        .logout-button {
+            width: 100%;
+            appearance: none;
+            background-color: #d2ecf7; /* Red color for logout button */
+            border: 2px solid #74b2f0; /* Dark red border */
+            box-sizing: border-box;
+            color: #000;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: normal;
+            outline: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            will-change: transform;
+            border-radius: 5px;
+            margin-top: 10px; /* Added margin between logout and other buttons */
+        }
+
+        .logout-button:hover {
+            box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+            transform: translateY(-2px);
+        }
+
+        .logout-button:active {
+            box-shadow: none;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Admin Home</h2>
+            <h4>Welcome to Master Page...</h4>
+        </div>
+        <a href="/add">
+            <button class="button-27" type="submit" class="button">Add to Inventory</button>
+        </a><br><br>
+        <a href="/view">
+            <button class="button-27" type="submit" class="button">View / Edit Inventory</button>
+        </a><br><br>
+        <a href="/plot">
+            <button class="button-27" type="submit" class="button">Trends</button>
+        </a><br><br>
+        <a href="{{ url_for('login') }}">
+            <button class="logout-button">Logout</button>
+        </a>
+    </div>
+</body>
+
+</html>
+
+
+
+

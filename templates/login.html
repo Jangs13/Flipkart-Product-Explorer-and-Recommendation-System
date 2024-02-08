@@ -1,0 +1,320 @@
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: E0E0E0
+        }
+
+        .container {
+            width: 60%;
+            padding: 20px;
+            background-color: #FFFFFF;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .login-section {
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            overflow: hidden;
+            text-align: center;
+            background-color: #8fd9ed;
+            padding: 20px 10px;
+            width: 100%;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #8fd9ed;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 2px solid #8fd9ed;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #FFFFFF;
+            outline: none;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #8fd9ed;
+            color: #FFFFFF;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-login:hover {
+            background-color: #6fa4c7;
+        }
+
+        .error-message {
+            color: #FF6347;
+            margin-top: 10px;
+        }
+
+        a {
+            color: #8fd9ed;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .description-section {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h2 {
+            color: #8fd9ed;
+            margin-bottom: 10px;
+        }
+
+        p {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-section">
+            <div class="header">
+                <h1>SmartShop</h1>
+            </div>
+            <br><br>
+            {% if error %}
+                <p class="error-message">Invalid username or password.</p>
+            {% endif %}
+            <form method="POST" action="{{ url_for('login') }}">
+                <label for="username">Username:</label>
+                <input type="text" name="username" required>
+                <label for="password">Password:</label>
+                <input type="password" name="password" required>
+                <input type="submit" class="btn-login" value="Log In">
+            </form>
+            <br>
+            <a href="{{ url_for('signup') }}">Don't have an account? Sign up here.</a>
+        </div>
+        <div class="description-section">
+            <h2>About SmartShop</h2>
+            <p>Your app description goes here. Highlight its features and benefits to users.</p>
+        </div>
+    </div>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #E0E0E0;
+        }
+
+        .container {
+            width: 60%;
+            padding: 20px;
+            background-color: #FFFFFF;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 2px solid #8fd9ed;
+        }
+
+        .login-section, .description-section {
+            width: 47%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .login-section {
+            border-right: 2px dashed #8fd9ed;
+            padding-right: 15px;
+        }
+
+        .header {
+            overflow: hidden;
+            text-align: center;
+            background-color: #8fd9ed;
+            padding: 20px 10px;
+            width: 100%;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #8fd9ed;
+        }
+
+        input {
+            width: calc(100% - 30px);
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 2px solid #8fd9ed;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #000;
+            outline: none;
+            caret-color: #8fd9ed; /* Set caret color */
+        }
+
+        input[type="password"] {
+        width: calc(100% - 30px);
+        padding: 10px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+        border: 2px solid #8fd9ed;
+        border-radius: 5px;
+        background-color: #FFFFFF; /* Change the background color for password input */
+        color: #333333; /* Change the text color for password input */
+        outline: none;
+        caret-color: #8fd9ed;
+    }
+
+
+        .btn-login {
+            width: calc(100% - 30px);
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #8fd9ed;
+            color: #FFFFFF;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-login:hover {
+            background-color: #6fa4c7;
+        }
+
+        .error-message {
+            color: #FF6347;
+            margin-top: 10px;
+        }
+
+        a {
+            color: #8fd9ed;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h2 {
+            color: #8fd9ed;
+            margin-bottom: 10px;
+        }
+
+        p {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-section">
+            <div class="header">
+                <h1>SmartShop</h1>
+            </div>
+            <br><br>
+            {% if error %}
+                <p class="error-message">Invalid username or password.</p>
+            {% endif %}
+            <form method="POST" action="{{ url_for('login') }}">
+                <label for="username">Username:</label>
+                <input type="text" name="username" required>
+                <label for="password">Password:</label>
+                <input type="password" name="password" required>
+                <input type="submit" class="btn-login" value="Log In">
+            </form>
+            <br>
+            <a href="{{ url_for('signup') }}">Don't have an account? Sign up here.</a>
+        </div>
+        <div class="description-section">
+            <h2>About SmartShop</h2>
+            <p>An all-encompassing application that serves as a user's ultimate destination for product search, exploration, and price monitoring. 
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+     
+
+
+
+
+
+
+
+
